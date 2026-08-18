@@ -14,6 +14,11 @@ const items = ref([
     {id : 'prod_102', name:'갤럭시'},
 ])
 const message = ref("안녕하세요!")
+const messageSecond = ref("느린 네트워크에서도 안전하게 출력되는 메세지")
+const count = ref(1)
+
+const name = ref('홍길동')
+const age = ref(20)
 </script>
 
 <template>
@@ -44,6 +49,23 @@ const message = ref("안녕하세요!")
         <h2>v-pre 디렉티브 학습</h2>
         <p>일반 출력 : {{ message }}</p>
         <p v-pre>v-pre 출력 : {{ message }}</p>
+
+        <h2>v-clock 디렉티브 학습</h2>
+        <p>{{ messageSecond }}</p>
+
+        <h2>v-once 디렉티브 학습</h2>
+        <p>일반 변수 (실시간): {{ count }}</p>
+        <p v-once>v-once 변수 (최초 고정): {{ count }}</p>
+        <button @click="count++">숫자 증가 버튼</button>
+
+        <h2>v-memo 디렉토리 학습</h2>
+        <div v-memo="[name]" style="padding:20px; border:1px solid #42b883; margin-bottom:10px">
+            <p>v-memo 적용 영역(기준 : name)</p>
+            <p>이름 : {{ name }}</p>
+            <p>나이 : {{ age }} (name이 바뀌어야 얘도 갱신됨)</p>
+        </div>
+        <button @click="name = '이순신'">1. 이름 변경(이순신)</button>&nbsp;
+        <button @click="age++">2. 나이 한 살 추가(age++)</button>
     </div>
 </template>
 
@@ -54,5 +76,8 @@ const message = ref("안녕하세요!")
     color:white;
     border-radius: 5px;
     background-color: #3498db;
+}
+[v-cloak]{
+    display: none !important;
 }
 </style>
