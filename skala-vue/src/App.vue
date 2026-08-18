@@ -1,6 +1,9 @@
 <script setup>
+import SampleFive from './components/SampleFive.vue';
 import SampleFour from './components/SampleFour.vue';
 import SampleOne from './components/SampleOne.vue'
+import SampleSeven from './components/SampleSeven.vue';
+import SampleSix from './components/SampleSix.vue';
 import SampleThree from './components/SampleThree.vue';
 import SampleTwo from './components/SampleTwo.vue'
 
@@ -12,6 +15,9 @@ import SampleTwo from './components/SampleTwo.vue'
     <SampleTwo/>
     <SampleThree/>
     <SampleFour/>
+    <SampleFive/>
+    <SampleSix/>
+    <SampleSeven/>
   </div>
 </template>
 

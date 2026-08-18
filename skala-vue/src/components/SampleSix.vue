@@ -3,7 +3,7 @@ import {ref} from 'vue'
 
 const textColor = ref('purple')
 const boxWidth = ref(150)
-const bseBoxStyle = ref({
+const baseBoxStyle = ref({
     backgroundColor : '#42b883',
     height:'100px',
     transition:'all 0.3s ease',

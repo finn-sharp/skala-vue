@@ -14,7 +14,7 @@ const isButtonDisabled = ref(true)
         <br/>
 
         <h3>2) 동적 이미지 연결</h3>
-        <img :href="logoImgSrc" alt="VUE 로고" style="width : 100px"/>
+        <img :src="logoImgSrc" alt="VUE 로고" style="width : 100px"/>
         <br/>
 
         <h3>3) 버튼 비활성화 제어</h3>
