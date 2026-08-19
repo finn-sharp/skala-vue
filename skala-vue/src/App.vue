@@ -9,6 +9,8 @@ import SampleThree from './components/SampleThree.vue';
 import SampleTwo from './components/SampleTwo.vue'
 import EventHandlerVon from './components/EventHandlerVon.vue'
 import EventHandlerModifier from './components/EventHandlerModifier.vue';
+import EventBinding from './components/EventBinding.vue';
+import WeatherMockup from './components/WeatherMockup.vue';
 
 </script>
 
@@ -24,6 +26,10 @@ import EventHandlerModifier from './components/EventHandlerModifier.vue';
     <SampleEight/>
     <EventHandlerVon/>
     <EventHandlerModifier/>
+    <EventBinding/>
+    <hr/>
+
+    <WeatherMockup/>
   </div>
 </template>
 
