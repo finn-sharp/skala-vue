@@ -19,34 +19,30 @@ const getCityName = (name) => {
 </script>
 
 <template>
-    <div class="app-container">
+    <div class="dashboard-wrapper">
+        <h1>과제1 : 날씨 (Mockup)</h1>
         <section class="search-box">
-            <h1>과제1 : 날씨 (Mockup)</h1>
-            <hr/>        
-            <div class="practice-subsection">
-                <h3>도시 검색</h3>
-                <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
-                <input type="text" :value="comment" @input="(e)=>{comment=e.target.value; stateComment = `{${comment}}이 선택되었습니다.`}"/>
-                <p>검색 중인 도시 : {{ comment }}</p>
-            </div>
+            <h3>도시 검색</h3>
+            <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
+            <input type="text" :value="comment" @input="(e)=>{comment=e.target.value; stateComment = `{${comment}}이 선택되었습니다.`}"/>
+            <p>검색 중인 도시 : {{ comment }}</p>
         </section>
         
-        <div class="practice-subsection">
+        <section class="list-box">
             <h3>지역별 날씨 현황</h3>
-            <ul v-for="item in weatherList" :key="item.id">
-                <li @click="getCityName(item.name)" class="practice-card" style="list-style-type: none;">
-                    {{ item.name }}({{ item.status }})<br>현재 기온 : {{ item.temp }}도
-                    <button @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
-                    <label v-if="item.temp >= 25" style="background-color: red;">더움(25도 이상)</label>
-                    <label v-else style="background-color: skyblue;">선선함(25도 미만)</label>
-                </li>
+            <div v-for="item in weatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
+                    <h4>{{ item.name }}({{ item.status }})</h4>
+                    <p>현재 기온 : {{ item.temp }}도</p>
+                    <span v-if="item.temp >= 25" style="background-color: red;" class="badge hot">더움(25도 이상)</span>
+                    <span v-else style="background-color: skyblue;" class="badge cool">선선함(25도 미만)</span>
+                    <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
                 <br/>
-            </ul>
-        </div>
+            </div>
+        </section>
         <br/>
     </div>
-        <div v-if="stateComment" style="color:green; background-color: greenyellow; text-align: center;">{{ stateComment }}</div>
-        <div v-else style="color:green; background-color: greenyellow; text-align: center;">카드를 클릭하거나 검색해 보세요.</div>
+        <div v-if="stateComment" class="status-bar">{{ stateComment }}</div>
+        <div v-else class="status-bar">카드를 클릭하거나 검색해 보세요.</div>
 </template>
 
 <style scoped>
