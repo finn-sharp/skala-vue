@@ -15,6 +15,8 @@ function showMessage() {
 <template>
     <div class="practice-section">
         <h2>v-html 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <h3>일반 보간법 {{  }} 사용 결과 : </h3>
         <p>{{ rawHtmlData }}</p>
         <br/>

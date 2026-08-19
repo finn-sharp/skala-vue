@@ -9,14 +9,18 @@ const score = ref(85)
 </script>
 
 <template>
-    <div class="practice-session">
+    <div class="practice-section">
         <h2>v-bind 디렉티브 고급(단축 문법)</h2>
+        <hr/>
+        <br/>
         <div :id>
             <img :src alt="Vue 로고" style="width: 50px">
         </div>
 
         <!-- v-if/v-else-if/v-else -->
         <h2>v-if, v-else-if, v-else 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <h3>1) 기본 로그인 상태 스위치</h3>
         <p v-if="isLogged">환영합니다! 회원 전용 화면입니다.</p>
         <p v-else>로그인이 필요합니다. 먼저 로그인해 주세요.</p>

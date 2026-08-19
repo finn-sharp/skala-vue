@@ -1,4 +1,5 @@
 <script setup>
+import SampleEight from './components/SampleEight.vue';
 import SampleFive from './components/SampleFive.vue';
 import SampleFour from './components/SampleFour.vue';
 import SampleOne from './components/SampleOne.vue'
@@ -10,7 +11,7 @@ import SampleTwo from './components/SampleTwo.vue'
 </script>
 
 <template>
-  <div>
+  <div class="practice-container">
     <SampleOne/>
     <SampleTwo/>
     <SampleThree/>
@@ -18,11 +19,10 @@ import SampleTwo from './components/SampleTwo.vue'
     <SampleFive/>
     <SampleSix/>
     <SampleSeven/>
+    <SampleEight/>
   </div>
 </template>
 
 <style scoped>
-div {
-  padding:20px
-}
+@import '@/assets/practice.css';
 </style>

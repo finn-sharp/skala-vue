@@ -6,8 +6,11 @@ const themeClass = ref('bg-dark')
 </script>
 
 <template>
-    <div class="practice-session">
+    <div class="practice-section">
         <h2>v-bind 디렉티브 고급 (클래스 바인딩)</h2>
+        <hr/>
+        <br/>
+
         <h3>클래스 바인딩(객체 형식)</h3>
         <p :class="{'text-danger':isWarning}">현재 경고 상태 : {{ isWarning }}</p>
         <button @click="isWarning=!isWarning">경고 상태 토글</button>

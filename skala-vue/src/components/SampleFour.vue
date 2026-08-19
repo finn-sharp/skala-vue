@@ -9,6 +9,8 @@ const isButtonDisabled = ref(true)
 <template>
     <div class="practice-section">
         <h2>v-bind 디렉티브 기본(축양형 : 콜론)</h2>
+        <hr/>
+        <br/>
         <h3>1) 동적 링크 연결</h3>
         <a :href="dynamicUrl">여기를 클릭하면 네이버로 이동합니다</a>
         <br/>

@@ -22,8 +22,10 @@ const age = ref(20)
 </script>
 
 <template>
-    <div class="practice-session">
+    <div class="practice-section">
         <h2>v-show 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <button @click="isVisible = !isVisible">화면 토글하기</button>
         <br />
 
@@ -31,8 +33,11 @@ const age = ref(20)
             <p>v-show 상자</p>
             <p>조건이 false가 되면 CSS display: none이 붙습니다.</p>
         </div>
+        <br/>
 
         <h2>v-for 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <h3>1) 배열 렌더링</h3>
         <ul>
             <li v-for="(fruit, index) in fruits" :key="index">{{ index+1 }}번 과일: {{ fruit }}</li>
@@ -47,18 +52,26 @@ const age = ref(20)
         </ul>
 
         <h2>v-pre 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <p>일반 출력 : {{ message }}</p>
         <p v-pre>v-pre 출력 : {{ message }}</p>
 
         <h2>v-clock 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <p>{{ messageSecond }}</p>
 
         <h2>v-once 디렉티브 학습</h2>
+        <hr/>
+        <br/>
         <p>일반 변수 (실시간): {{ count }}</p>
         <p v-once>v-once 변수 (최초 고정): {{ count }}</p>
         <button @click="count++">숫자 증가 버튼</button>
 
         <h2>v-memo 디렉토리 학습</h2>
+        <hr/>
+        <br/>
         <div v-memo="[name]" style="padding:20px; border:1px solid #42b883; margin-bottom:10px">
             <p>v-memo 적용 영역(기준 : name)</p>
             <p>이름 : {{ name }}</p>
