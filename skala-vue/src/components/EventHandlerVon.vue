@@ -28,7 +28,7 @@ const getWithParam = (name, e) => {
         <h2>v-on 이벤트 핸들링 기초</h2>
         <hr/>
         <h3>1) 인라인 연산 처리</h3>
-        <p>현재 카운트 : {{ count2 }}</p>
+        <p>현재 카운트 : {{ count}}</p>
         <button @click="count++">1씩 증가</button>
         <br/>
         

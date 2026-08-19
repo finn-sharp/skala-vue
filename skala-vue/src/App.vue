@@ -7,6 +7,8 @@ import SampleSeven from './components/SampleSeven.vue';
 import SampleSix from './components/SampleSix.vue';
 import SampleThree from './components/SampleThree.vue';
 import SampleTwo from './components/SampleTwo.vue'
+import EventHandlerVon from './components/EventHandlerVon.vue'
+import EventHandlerModifier from './components/EventHandlerModifier.vue';
 
 </script>
 
@@ -20,6 +22,8 @@ import SampleTwo from './components/SampleTwo.vue'
     <SampleSix/>
     <SampleSeven/>
     <SampleEight/>
+    <EventHandlerVon/>
+    <EventHandlerModifier/>
   </div>
 </template>
 
