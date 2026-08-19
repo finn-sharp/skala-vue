@@ -19,6 +19,11 @@ const count = ref(1)
 
 const name = ref('홍길동')
 const age = ref(20)
+
+const handleSubmit = (e) => {
+    console.log(name, age);
+    e.preventDefault();
+}
 </script>
 
 <template>
@@ -77,8 +82,11 @@ const age = ref(20)
             <p>이름 : {{ name }}</p>
             <p>나이 : {{ age }} (name이 바뀌어야 얘도 갱신됨)</p>
         </div>
-        <button @click="name = '이순신'">1. 이름 변경(이순신)</button>&nbsp;
-        <button @click="age++">2. 나이 한 살 추가(age++)</button>
+        <form @submit="handleSubmit">
+            <button @click="name = '이순신'">1. 이름 변경(이순신)</button>&nbsp;
+            <button @click="age++">2. 나이 한 살 추가(age++)</button>&nbsp;
+            <button type="submit">제출하기</button>
+        </form>   
     </div>
 </template>
 
