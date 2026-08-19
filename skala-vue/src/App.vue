@@ -10,7 +10,8 @@
 // import EventHandlerVon from './components/EventHandlerVon.vue'
 // import EventHandlerModifier from './components/EventHandlerModifier.vue';
 // import EventBinding from './components/EventBinding.vue';
-import WeatherMockup from './components/WeatherMockup.vue';
+// import WeatherMockup from './components/WeatherMockup.vue';
+import ReactiveState from './components/ReactiveState.vue';
 
 </script>
 
@@ -29,7 +30,8 @@ import WeatherMockup from './components/WeatherMockup.vue';
     <EventBinding/>
     <hr/> -->
 
-    <WeatherMockup/>
+    <!-- <WeatherMockup/> -->
+    <ReactiveState/>
   </div>
 </template>
 
