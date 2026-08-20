@@ -16,11 +16,11 @@
 // import WeatherMockup from './components/WeatherMockup.vue';
 // import ReactiveState from './components/ReactiveState.vue';
 // import WeatherComposition from './components/WeatherComposition.vue/index.js';
-
+import WeatherParent from './components/weather_hands_on/WeatherParent.vue';
 // component mount/unmpount
-import LifeCycleHook from './components/LifeCycleHook.vue';
-import {ref} from 'vue'
-const isActive = ref(true)
+// import LifeCycleHook from './components/LifeCycleHook.vue';
+// import {ref} from 'vue'
+// const isActive = ref(true)
 </script>
 
 <template>
@@ -42,16 +42,17 @@ const isActive = ref(true)
     <WatchExam/>
     <WatchReactiveExam/> -->
     
-    <section>
+    <!-- <section>
         <h2>Lifecycle Hook</h2>
         <p>현재 조건 : {{ isActive }}</p>
         <button @click.prevent="isActive = !isActive" >{{isActive ? "실습 컴포넌트 파괴하기(v-if='false')":"실습 컴포넌트 마운트하기"}}</button>
         <LifeCycleHook v-if="isActive"/>
     </section>
-    
+     -->
     <!-- Hands on -->
     <!-- <WeatherMockup/> -->
     <!-- <WeatherComposition/> -->
+    <WeatherParent/>
   </div>
 </template>
 
