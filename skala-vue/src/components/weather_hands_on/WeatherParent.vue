@@ -2,6 +2,8 @@
 import {ref, computed, watch, watchEffect} from 'vue'
 
 import BaseDashboardCard from './BaseDashboardCard.vue'
+import SearchBar from './SearchBar.vue'
+import WeatherCard from './WeatherCard.vue'
 
 const comment = ref('')
 const weatherList = ref([
@@ -42,41 +44,14 @@ watchEffect(()=>{
     <div class="dashboard-wrapper">
         <h1>과제1 : 날씨 (Mockup)</h1>
         <BaseDashboardCard>
-            <h3>도시 검색</h3>
-            <!-- @ : v-on ... submit 이벤트 감지 ... prevent 기본 동작 막고 함수 실행 -->
-            <form @submit.prevent="handleSearch">
-                <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
-                <input type="text" :value="comment" @input="(e)=>{comment=e.target.value}"/>
-            </form>
-            <p>검색 중인 도시 : {{ comment }}</p>
+            <SearchBar :comment="comment" @searched-query="handleSearch" @searching-query="(query)=>(comment=query)"/>
         </BaseDashboardCard>
         
         <BaseDashboardCard>
             <h3>지역별 날씨 현황</h3>
-            <div v-if="!cityQuery">
-              <div v-for="item in weatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
-                    <h4>{{ item.name }}({{ item.status }})</h4>
-                    <p>현재 기온 : {{ item.temp }}도</p>
-                    <span v-if="item.temp >= 25" style="background-color: red;" class="badge hot">더움(25도 이상)</span>
-                    <span v-else style="background-color: skyblue;" class="badge cool">선선함(25도 미만)</span>
-                    <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
-                <br/>
-              </div>
-            </div>
-            <div v-else-if="filteredWeatherList.length > 0">
-                <div v-for="item in filteredWeatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
-                    <h4>{{ item.name }}({{ item.status }})</h4>
-                    <p>현재 기온 : {{ item.temp }}도</p>
-                    <span v-if="item.temp >= 25" style="background-color: red;" class="badge hot">더움(25도 이상)</span>
-                    <span v-else style="background-color: skyblue;" class="badge cool">선선함(25도 미만)</span>
-                    <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
-                    <br/>                
-                </div>
-            </div>
-            <div v-else class="weather-card">
-                <h4>검색된 도시와 일치하는 결과가 없습니다.</h4>
-            </div>
-
+            <div v-if="!cityQuery" ><WeatherCard :weather-list="weatherList" @get-name="(name)=> getCityName(name)" @show-detail="(name, status)=>showDetail(name, status)"/></div>
+            <div v-else-if="filteredWeatherList.length > 0"><WeatherCard :weather-list="filteredWeatherList" @get-name="(name)=> getCityName(name)" @show-detail="(name, status)=>showDetail(name, status)"/></div>
+            <div v-else ><h4>검색된 도시와 일치하는 결과가 없습니다.</h4></div>
         </BaseDashboardCard>
         <br/>
     </div>
@@ -179,35 +154,6 @@ input {
   padding: 8px;
   width: 90%;
   font-size: 14px;
-}
-.weather-card {
-  background: #fff;
-  border: 1px solid #dee2e6;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-}
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  color: #fff;
-}
-.hot {
-  background-color: #ff7675;
-}
-.cool {
-  background-color: #74b9ff;
-}
-.btn-detail {
-  position: absolute;
-  right: 12px;
-  top: 15px;
-  padding: 6px 10px;
-  cursor: pointer;
 }
 .status-bar {
   background: #e8f5e9;
