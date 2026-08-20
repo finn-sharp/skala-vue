@@ -25,7 +25,7 @@ const handleSearch = () => {
 }
 
 const filteredWeatherList = computed(() => {
-    return weatherList.value.filter((weather) => weather.name == comment.value)
+    return weatherList.value.filter((weather) => weather.name == cityQuery.value)
 })
 watch(stateComment, (newVal, oldVal) => {
     console.log(`[watch 감지] 상태바 문구가 업데이트되었습니다 -> ${newVal}`)
@@ -40,8 +40,9 @@ watchEffect(()=>{
         <h1>과제1 : 날씨 (Mockup)</h1>
         <section class="search-box">
             <h3>도시 검색</h3>
-            <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
+            <!-- @ : v-on ... submit 이벤트 감지 ... prevent 기본 동작 막고 함수 실행 -->
             <form @submit.prevent="handleSearch">
+                <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
                 <input type="text" :value="comment" @input="(e)=>{comment=e.target.value}"/>
             </form>
             <p>검색 중인 도시 : {{ comment }}</p>
@@ -49,7 +50,7 @@ watchEffect(()=>{
         
         <section class="list-box">
             <h3>지역별 날씨 현황</h3>
-            <div v-if="!comment">
+            <div v-if="!cityQuery">
               <div v-for="item in weatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
                     <h4>{{ item.name }}({{ item.status }})</h4>
                     <p>현재 기온 : {{ item.temp }}도</p>
