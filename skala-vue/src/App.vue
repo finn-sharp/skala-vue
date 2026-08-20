@@ -10,11 +10,12 @@
 // import EventHandlerVon from './components/EventHandlerVon.vue'
 // import EventHandlerModifier from './components/EventHandlerModifier.vue';
 // import EventBinding from './components/EventBinding.vue';
-import ComputedExam from './components/ComputedExam.vue';
-import WatchExam from './components/WatchExam.vue';
-import WatchReactiveExam from './components/WatchReactiveExam.vue';
-import WeatherMockup from './components/WeatherMockup.vue';
+// import ComputedExam from './components/ComputedExam.vue';
+// import WatchExam from './components/WatchExam.vue';
+// import WatchReactiveExam from './components/WatchReactiveExam.vue';
+// import WeatherMockup from './components/WeatherMockup.vue';
 // import ReactiveState from './components/ReactiveState.vue';
+import WeatherComposition from './components/WetherComposition.vue';
 
 </script>
 
@@ -33,11 +34,12 @@ import WeatherMockup from './components/WeatherMockup.vue';
     <EventBinding/>
     <hr/> -->
 
-    <WeatherMockup/>
+    <!-- <WeatherMockup/> -->
     <!-- <ReactiveState/> -->
-    <ComputedExam/>
-    <WatchExam/>
-    <WatchReactiveExam/>
+    <!-- <ComputedExam/> -->
+    <!-- <WatchExam/> -->
+    <!-- <WatchReactiveExam/> -->
+    <WeatherComposition/>
   </div>
 </template>
 

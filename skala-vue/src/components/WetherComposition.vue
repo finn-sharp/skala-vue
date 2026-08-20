@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, computed, watch, watchEffect} from 'vue'
 const comment = ref('')
 const weatherList = ref([
     {id : 'city_01', name: '서울', temp:28, status:'맑음'},
@@ -11,11 +11,28 @@ const showDetail = (cityName, status) => {
 }
 
 const cityName = ref('')
-const stateComment = ref('')
+const stateComment = ref('카드를 클릭하거나 검색해 보세요.')
 const getCityName = (name) => {
     cityName.value = name
-    stateComment.value = `{${name}}이 선택되었습니다.`
 }
+
+const cityQuery = ref('')
+const handleSearch = () => {
+    console.log(`onChange started`)
+    cityQuery.value = comment.value
+    stateComment.value = `{${comment.value}}이 선택되었습니다.`
+    console.log(`onChange completed`)
+}
+
+const filteredWeatherList = computed(() => {
+    return weatherList.value.filter((weather) => weather.name == comment.value)
+})
+watch(stateComment, (newVal, oldVal) => {
+    console.log(`[watch 감지] 상태바 문구가 업데이트되었습니다 -> ${newVal}`)
+})
+watchEffect(()=>{
+    console.log(`[watchEffect 자동호출] - 현재 검색어 '${comment.value}'에 매칭되는 API 데이터를 필터링합니다...`)
+})
 </script>
 
 <template>
@@ -24,25 +41,43 @@ const getCityName = (name) => {
         <section class="search-box">
             <h3>도시 검색</h3>
             <!-- 양방향 바인딩 : v-model은 한글 초/중/종 조합 때문에 딜레이 있음, 아래 방법(good) -->
-            <input type="text" :value="comment" @input="(e)=>{comment=e.target.value; stateComment = `{${comment}}이 선택되었습니다.`}"/>
+            <form @submit.prevent="handleSearch">
+                <input type="text" :value="comment" @input="(e)=>{comment=e.target.value}"/>
+            </form>
             <p>검색 중인 도시 : {{ comment }}</p>
         </section>
         
         <section class="list-box">
             <h3>지역별 날씨 현황</h3>
-            <div v-for="item in weatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
+            <div v-if="!comment">
+              <div v-for="item in weatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
                     <h4>{{ item.name }}({{ item.status }})</h4>
                     <p>현재 기온 : {{ item.temp }}도</p>
                     <span v-if="item.temp >= 25" style="background-color: red;" class="badge hot">더움(25도 이상)</span>
                     <span v-else style="background-color: skyblue;" class="badge cool">선선함(25도 미만)</span>
                     <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
                 <br/>
+              </div>
             </div>
+            <div v-else-if="filteredWeatherList.length > 0">
+                <div v-for="item in filteredWeatherList" :key="item.id" class="weather-card" @click="getCityName(item.name)">
+                    <h4>{{ item.name }}({{ item.status }})</h4>
+                    <p>현재 기온 : {{ item.temp }}도</p>
+                    <span v-if="item.temp >= 25" style="background-color: red;" class="badge hot">더움(25도 이상)</span>
+                    <span v-else style="background-color: skyblue;" class="badge cool">선선함(25도 미만)</span>
+                    <button class="btn-detail" @click.stop="showDetail(item.name, item.status)">상세보기</button><br>
+                    <br/>                
+                </div>
+            </div>
+            <div v-else class="weather-card">
+                <h4>검색된 도시와 일치하는 결과가 없습니다.</h4>
+            </div>
+
         </section>
         <br/>
     </div>
         <div v-if="stateComment" class="status-bar">{{ stateComment }}</div>
-        <div v-else class="status-bar">카드를 클릭하거나 검색해 보세요.</div>
+        <div v-else class="status-bar">{{ stateComment }}</div>
 </template>
 
 <style scoped>
