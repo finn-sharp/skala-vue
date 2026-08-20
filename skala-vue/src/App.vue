@@ -15,12 +15,15 @@
 // import WatchReactiveExam from './components/WatchReactiveExam.vue';
 // import WeatherMockup from './components/WeatherMockup.vue';
 // import ReactiveState from './components/ReactiveState.vue';
-import WeatherComposition from './components/WetherComposition.vue';
-
+// import WeatherComposition from './components/WeatherComposition.vue/index.js';
+import LifeCycleHook from './components/LifeCycleHook.vue';
+import {ref} from 'vue'
+const isActive = ref(true)
 </script>
 
 <template>
   <div class="practice-container">
+    <!-- Code Challenge -->
     <!-- <SampleOne/>
     <SampleTwo/>
     <SampleThree/>
@@ -32,14 +35,21 @@ import WeatherComposition from './components/WetherComposition.vue';
     <EventHandlerVon/>
     <EventHandlerModifier/>
     <EventBinding/>
-    <hr/> -->
-
+    <ReactiveState/>
+    <ComputedExam/>
+    <WatchExam/>
+    <WatchReactiveExam/> -->
+    
+    <section>
+        <h2>Lifecycle Hook</h2>
+        <p>현재 조건 : {{ !isActive }}</p>
+        <button @click.prevent="isActive = !isActive" >{{isActive ? "실습 컴포넌트 마운트하기":"실습 컴포넌트 파괴하기(v-if='false')"}}</button>
+        <LifeCycleHook v-if="isActive"/>
+    </section>
+    
+    <!-- Hands on -->
     <!-- <WeatherMockup/> -->
-    <!-- <ReactiveState/> -->
-    <!-- <ComputedExam/> -->
-    <!-- <WatchExam/> -->
-    <!-- <WatchReactiveExam/> -->
-    <WeatherComposition/>
+    <!-- <WeatherComposition/> -->
   </div>
 </template>
 
