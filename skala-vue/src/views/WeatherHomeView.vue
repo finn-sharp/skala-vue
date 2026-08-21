@@ -31,11 +31,6 @@ const filteredWeatherList = computed(() => {
   return weatherList.value.filter((item) => item.name.includes(query))
 })
 
-const showDetail = (cityName, status) => {
-  window.alert(`${cityName}의 현재 날씨는 [${status}] 상태입니다.`)
-}
-
-
 watch(selectedCityInfo, (newInfo) => {
   console.log(`👁️‍🗨️ [watch 감지] 상태 바 문구가 업데이트되었습니다 -> "${newInfo}"`)
 })
@@ -54,8 +49,7 @@ watchEffect(() => {
         <BaseDashboardCard>
             <WeatherCard v-for="item in filteredWeatherList" :key="item.id" :city-item="item" @select-card="(msg) => (selectedCityInfo = msg)" @click-detail="handleMoveWeatherDetail(item)" />
             <p v-if="filteredWeatherList.length === 0" style="text-align: center; color: #e74c3c; padding: 10px 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
-        </BaseDashboardCard>
-        
+        </BaseDashboardCard>        
         <div class="status-bar">
             {{ selectedCityInfo }}
         </div>

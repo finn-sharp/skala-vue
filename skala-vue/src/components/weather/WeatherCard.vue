@@ -1,4 +1,7 @@
 <script setup>
+import { computed } from 'vue';
+import {useUnitStore} from '@/stores/configStore.js'
+
 const props = defineProps({
     cityItem:{
         type:Object,
@@ -9,11 +12,19 @@ const emit = defineEmits([
     'select-card',
     'click-detail'
 ])
+const configStore = useUnitStore()
+const displayTemp = computed(()=>{
+  const rawTemp = props.cityItem.temp
+  if (configStore.unit === 'fahrenheit'){
+    return Math.round((rawTemp*9)/5+32)
+  }
+  return rawTemp
+})
 </script>
 <template>
   <div class="weather-card" @click="emit('select-card', `${cityItem.name}이 선택되었습니다.`)">
     <h4>{{ cityItem.name }} ({{ cityItem.status }})</h4>
-    <p>현재 기온: {{ cityItem.temp }}°C</p>
+    <p>현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
 
     <span v-if="cityItem.temp >= 25" class="badge hot">🔥 더움</span>
     <span v-else class="badge cool">❄️ 선선함</span>

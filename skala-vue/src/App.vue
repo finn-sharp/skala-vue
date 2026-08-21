@@ -17,6 +17,8 @@
 // import ReactiveState from './components/ReactiveState.vue';
 // import WeatherComposition from './components/WeatherComposition.vue/index.js';
 // import WeatherParent from './components/weather_hands_on/WeatherParent.vue';
+// import StoreCounter from './components/practice/library/StoreCounter.vue';
+import UnitToggler from './components/practice/library/UnitToggler.vue';
 
 // component mount/unmpount
 // import LifeCycleHook from './components/LifeCycleHook.vue';
@@ -27,11 +29,15 @@ import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
+  <!-- <StoreCounter/> -->
   <div class="practice-container">
-    <nav>
-      <RouterLink to="/">날씨 대시보드</RouterLink>
-      <RouterLink to="/about">서비스 소개</RouterLink>
-    </nav>
+    <div>
+      <nav>
+        <RouterLink to="/">날씨 대시보드</RouterLink>
+        <RouterLink to="/about">서비스 소개</RouterLink>
+      </nav>
+      <UnitToggler/>
+    </div>
 
     <RouterView/>    
   </div>
