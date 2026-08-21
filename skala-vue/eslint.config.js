@@ -25,6 +25,14 @@ export default defineConfig([
   ...pluginVue.configs['flat/essential'],
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
-
+  {
+    name: 'app/custom-rules',
+    rules: {
+      // 단일 단어 컴포넌트 이름 경고/에러 비활성화
+      'no-unused-vars':'warn', //안쓰는 변수를 경고처리하는 거 끄는 규칙
+      'no-console':'off', // 개발할 때는 사용하고 배포할 때는 꺼버림
+      'vue/multi-word-component-names': 'off',
+    }
+  },
   skipFormatting,
 ])

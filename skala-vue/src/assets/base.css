@@ -19,6 +19,7 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
 }
 
 /* semantic color variables for this project */
@@ -48,6 +49,42 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
+}
+
+:root {
+  /* ==========================================
+     Spacing Tokens (--spacing-*)
+     ================================---------- */
+  --spacing-x0-5: 2px;
+  --spacing-x1: 4px;
+  --spacing-x1-5: 6px;
+  --spacing-x2: 8px;
+  --spacing-x3: 12px;
+  --spacing-x4: 16px;
+  --spacing-x5: 20px;
+  --spacing-x6: 24px;
+
+  /* ==========================================
+     Radius Tokens (--radius-*)
+     ================================---------- */
+  --radius-r1: 4px;
+  --radius-r2: 8px;
+  --radius-r3: 12px;
+  --radius-r4: 16px;
+  --radius-full: 9999px;
+
+  /* ==========================================
+     Color Tokens (--color-*)
+     * 컴포넌트의 resolveToken('color', ...) 호환용
+     ================================---------- */
+  --color-layer-default: #ffffff;
+  --color-brand-solid: #10b981;
+  --color-neutral-weak: #f1f3f5;
+
+  /* 기존 bg-* 스타일명으로 직접 호출하는 경우를 위한 백업 변수 */
+  --bg-layer-default: #ffffff;
+  --bg-brand-solid: #10b981;
+  --bg-neutral-weak: #f1f3f5;
 }
 
 *,

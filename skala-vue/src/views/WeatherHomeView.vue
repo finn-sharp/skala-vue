@@ -20,9 +20,9 @@ const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 
 const weatherList = ref([
-  { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
-  { id: 'city_02', name: '수원', temp: 24, status: '비' },
-  { id: 'city_03', name: '부산', temp: 26, status: '구름' },
+  { id: 'city_01', name: '서울', temp: 28, status: '맑음',}, // lon: , lat:  },
+  { id: 'city_02', name: '수원', temp: 24, status: '비',}, // lon: , lat:   },
+  { id: 'city_03', name: '부산', temp: 26, status: '구름',}, // lon: , lat:   },
 ])
 
 const filteredWeatherList = computed(() => {

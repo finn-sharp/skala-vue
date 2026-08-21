@@ -18,18 +18,26 @@
 // import WeatherComposition from './components/WeatherComposition.vue/index.js';
 // import WeatherParent from './components/weather_hands_on/WeatherParent.vue';
 // import StoreCounter from './components/practice/library/StoreCounter.vue';
-import UnitToggler from './components/practice/library/UnitToggler.vue';
+// import OpenWeatherAPI from './components/OpenWeatherAPI.vue';
+// import UnitToggler from './components/practice/library/UnitToggler.vue';
 
 // component mount/unmpount
 // import LifeCycleHook from './components/LifeCycleHook.vue';
 // import {ref} from 'vue'
 // const isActive = ref(true)
 
-import { RouterLink, RouterView } from 'vue-router';
+// import { RouterLink, RouterView } from 'vue-router';
+
+import DesignSystemExample from './components/DesignSystemExample.vue';
 </script>
 
 <template>
-  <!-- <StoreCounter/> -->
+  <DesignSystemExample/>
+</template>
+
+
+<!-- <template>
+  <StoreCounter/>
   <div class="practice-container">
     <div>
       <nav>
@@ -38,10 +46,10 @@ import { RouterLink, RouterView } from 'vue-router';
       </nav>
       <UnitToggler/>
     </div>
-
+    <OpenWeatherAPI/>
     <RouterView/>    
   </div>
-</template>
+</template> -->
 
 <style scoped>
 @import '@/assets/practice.css';
