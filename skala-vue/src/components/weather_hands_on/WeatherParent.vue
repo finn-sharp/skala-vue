@@ -32,6 +32,13 @@ const handleSearch = () => {
 const filteredWeatherList = computed(() => {
     return weatherList.value.filter((weather) => weather.name == cityQuery.value)
 })
+
+// const filteredWeatherList = computed(() => {
+//   const query = searchQuery.value.trim()
+//   if (!query) return weatherList.value
+//   return weatherList.value.filter((item) => item.name.includes(query))
+// })
+
 watch(stateComment, (newVal, oldVal) => {
     console.log(`[watch 감지] 상태바 문구가 업데이트되었습니다 -> ${newVal}`)
 })

@@ -16,43 +16,24 @@
 // import WeatherMockup from './components/WeatherMockup.vue';
 // import ReactiveState from './components/ReactiveState.vue';
 // import WeatherComposition from './components/WeatherComposition.vue/index.js';
-import WeatherParent from './components/weather_hands_on/WeatherParent.vue';
+// import WeatherParent from './components/weather_hands_on/WeatherParent.vue';
+
 // component mount/unmpount
 // import LifeCycleHook from './components/LifeCycleHook.vue';
 // import {ref} from 'vue'
 // const isActive = ref(true)
+
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
   <div class="practice-container">
-    <!-- Code Challenge -->
-    <!-- <SampleOne/>
-    <SampleTwo/>
-    <SampleThree/>
-    <SampleFour/>
-    <SampleFive/>
-    <SampleSix/>
-    <SampleSeven/>
-    <SampleEight/>
-    <EventHandlerVon/>
-    <EventHandlerModifier/>
-    <EventBinding/>
-    <ReactiveState/>
-    <ComputedExam/>
-    <WatchExam/>
-    <WatchReactiveExam/> -->
-    
-    <!-- <section>
-        <h2>Lifecycle Hook</h2>
-        <p>현재 조건 : {{ isActive }}</p>
-        <button @click.prevent="isActive = !isActive" >{{isActive ? "실습 컴포넌트 파괴하기(v-if='false')":"실습 컴포넌트 마운트하기"}}</button>
-        <LifeCycleHook v-if="isActive"/>
-    </section>
-     -->
-    <!-- Hands on -->
-    <!-- <WeatherMockup/> -->
-    <!-- <WeatherComposition/> -->
-    <WeatherParent/>
+    <nav>
+      <RouterLink to="/">날씨 대시보드</RouterLink>
+      <RouterLink to="/about">서비스 소개</RouterLink>
+    </nav>
+
+    <RouterView/>    
   </div>
 </template>
 
