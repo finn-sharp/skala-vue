@@ -16,7 +16,6 @@ const handleMoveWeatherDetail = (weatherDetail) => {
     })
 }
 
-
 const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 
