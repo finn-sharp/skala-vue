@@ -1,0 +1,737 @@
+/* ==========================================================================
+   1. GOOGLE FONTS (구글 폰트 불러오기)
+   ========================================================================== */
+:root {
+  --container-max-width: 1024px;
+  --layout-gap-xs: 0.5rem;
+  --layout-gap-sm: 1rem;
+  --layout-gap-md: 1.5rem;
+  --layout-gap-lg: 2rem;
+  --layout-gap-xl: 2.5rem;
+  --layout-gap-2xl: 3rem;
+  --layout-gap-4xl: 4rem;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+/* ==========================================================================
+   2. GLOBAL & HEADER STYLE (기본 공통 및 상단 바)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+figure {
+  margin:0; /* figure 자체적으로 적용되는 margin이 있음 */
+  margin-bottom: 2rem;
+}
+
+body {
+  /* layout */
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  min-height: 100vh;
+  margin: 0;
+  
+  /* skin */
+  background-color: #ffffff;
+  color: #212529;
+}
+main {
+  /* layout */
+  flex: 1;
+}
+
+/* 전체 h1,h2 tag 대상 제목 스타일 변경 */
+h1 {
+    color: #212529;
+    font-size: 36px;
+}
+
+h2 {
+    color: black;
+    font-size: 28px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #212529;
+}
+/* 회원가입 페이지 */
+button,
+input[type="submit"],
+input[type="reset"] {
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-color: #000000;
+  }
+  
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: rgb(143, 143, 143) !important; /* 마우스 올렸을 때 진해질 배경색 */
+  color: #000000;            /* 마우스 올렸을 때 바뀔 글자색 */
+}
+
+#userEmail,
+select[name="emailDomain"] {
+    width: auto;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #212529;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #706f6f;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+fieldset {
+    border: 2px solid #212529;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color:white;
+}
+
+legend {
+    font-weight: bold;
+    color: #212529;
+    padding: 0 10px;
+}
+
+/* 시간표 페이지  */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+th {
+    background-color: #212529;
+    color: white;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e8f5e9;
+}
+
+
+
+/* Semantic HTML - <header> */
+header {
+  /* layout */
+  width:100%;
+  height: auto;
+  margin: 0 auto;
+  padding-inline: max(var(--layout-gap-sm), calc((100vw - var(--container-max-width)) / 2));
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  
+  /* skin */
+  background-color: #ffffff;  
+}
+
+.logo a {
+  /* layout */
+  display: inline-block;
+  z-index: 100;
+
+  /* interaction */
+  text-decoration:none;
+  outline:none;
+  color:inherit;
+}
+.logo:hover{
+  transform: scale(1.1);
+}
+
+
+
+nav {
+  /* layout */
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+
+  background-color: white;
+}
+
+#menu-trigger {
+    display: none;
+}
+
+.main_sub_text {
+  /* layout  */
+  cursor: pointer;
+  display: block;
+  padding-inline:3.3px;
+
+  /* skin */
+  font-size:24px;
+  font-weight: bold;
+  border-radius: 5px;
+
+  /* interaction */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main_sub_text:hover{
+  /* interaction */
+  transform: scale(1.1);
+  background-color:black ;
+  color: white;
+}
+
+.main_nav {
+  /* layout */
+  display: none;  
+  flex-direction: column ;
+  gap: 0.5rem;
+  padding-right:1rem;
+  
+  /* skin */
+  list-style: none;
+}
+
+.main_nav>li {
+  /* layout */
+  display: block;
+  
+  /* skin */
+  text-align: right;
+  line-height: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  
+  /* interaction */
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#menu-trigger:checked ~ nav .main_nav{
+    display: flex;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+li a {
+  /* layout */
+  padding-inline:0.5rem;
+
+  /* skin */
+  color: inherit;
+  border-radius: 5px;
+
+  /* interaction */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+li a:hover{
+  /* interaction */
+  transform: scale(1.1);
+  background-color:black ;
+  color: white;
+}
+
+
+hr {
+  /* layout */
+  width: 100%; 
+  height: 1px;          
+  max-width: 1024px;
+  margin-bottom: 3rem;  
+
+  /* skin */
+  background: #e5e8eb;  
+  border: 0;    
+}
+
+.container {
+    /* layout */
+    width: min(100%, var(--container-max-width));
+    margin: 0 auto;
+    padding-inline: var(--layout-gap-sm);
+}
+
+section {
+  /* layout */
+  margin-bottom: var(--layout-gap-4xl);
+}
+
+/* Semantic HTML - <footer> */
+/* --- 기존 스타일 유지 및 클래스 기반 변경 --- */
+footer {
+  /* layout */
+  margin-top: auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--layout-gap-lg) 0;
+
+  /* skin */
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e8eb;
+}
+
+footer div {
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-info {
+  padding-right:20px;
+}
+
+footer div div {
+  /* layout */
+  order: 0;
+  display: inline-block;
+  align-content: flex-start;
+  margin: 0;
+}
+
+footer div div p {
+  /* layout */
+  line-height: 1.5;
+
+  /* skin */
+  font-size: 0.875rem;
+  color: #6b7684;
+}
+
+footer div div p:nth-child(2) {
+  /* skin */
+  color: #4e5968;
+  font-weight: 500;
+}
+
+footer div aside.footer-btn-container {
+  /* layout */
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 160px;
+  padding: 16px 12px;
+  margin-bottom: 20px;
+  position: relative;
+
+  /* skin */
+  border: 3px solid #9697997f;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.footer-weather-layer {
+  /* layout */
+  position: absolute;
+  bottom: 0;
+  right: calc(100% + 16px);
+  width: 220px;
+  padding: 16px;
+  text-align: left;
+  z-index: 100;
+
+  /* skin */
+  background-color: #ffffff;
+  border: 1px solid #e5e8eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.footer-js-btn {
+  /* layout */
+  display: block;
+  width: 140px;
+  padding: 0.5rem 0.75rem;
+
+  /* skin */
+  border: none;
+  border-radius: 4px;
+  background-color: #e5e8eb;
+  color: #4e5968;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.footer-js-btn:hover {
+  /* skin */
+  background-color: #d1d6db;
+  color: #333d4b;
+}
+
+.footer-weather-layer select {
+  /* layout */
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+
+  /* skin */
+  border: 1px solid #e5e8eb;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #4e5968;
+  background-color: #ffffff;
+}
+
+#weather-box {
+  /* layout */
+  line-height: 1.5;
+
+  /* skin */
+  font-size: 0.85rem;
+  color: #4e5968;
+}
+
+
+/* ==========================================================================
+   3. index.html CSS (공통 + Mobile)
+   ========================================================================== */
+@keyframes fadeInUp {
+    from {
+        /* 시작 상태 */
+        opacity: 0;           /* 완전히 투명하게 */
+        transform: translateY(20px); /* 원래 위치보다 20px 아래에 위치 */
+    }
+    to {
+        /* 끝 상태 (도착) */
+        opacity: 1;           /* 완전히 또렷하게 */
+        transform: translateY(0);    /* 원래 위치로 원복 */
+    }
+}
+
+.index-title {
+  /* animation */
+  animation-name: fadeInUp;       /* 정의한 애니메이션 이름 */
+  animation-duration: 1s;         /* 1초 동안 실행 */
+  animation-timing-function: ease-out; /* 처음엔 빠르고 끝엔 부드럽게 */
+  animation-fill-mode: forwards;
+}
+/* Main - Title */
+.main_title > h1 {
+  /* layout */
+  margin-bottom: var(--layout-gap-sm);
+  
+  /* skin */
+  color: #212529;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+}
+.main_title > p {
+  /* layout */
+  margin-bottom: var(--layout-gap-lg);
+  
+  /* skin */
+  color: #212529;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.3;
+  text-align: left;
+}
+
+/* Main - Card */
+/* Mobile용에선 Desktop용 이미지 제거 */
+.card_info_image {
+  /* layout */
+  display: none;
+}
+.card_info {
+  /* layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.card_info_box{
+  /* layout */
+  flex:1;
+  margin: 0 auto;
+  gap: var(--layout-gap-4xl);
+
+  /* animation */
+  animation-name: fadeInUp;       /* 정의한 애니메이션 이름 */
+  animation-duration: 1s;         /* 1초 동안 실행 */
+  animation-timing-function: ease-out; /* 처음엔 빠르고 끝엔 부드럽게 */
+  animation-fill-mode: forwards;
+}
+.card_info_box figure img  {
+  /* layout */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+  /* skin */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.card_info_box{
+  /* layout */
+  margin: 0px;
+}
+.card_info_box h3 a {
+  /* skin */
+  font-size: 1.5rem;
+  color: #212529;
+  text-decoration: none;
+}
+.card_info_box p {
+  /* layout */
+  margin: 0;
+  
+  /* skin */
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: #4e5968;
+}
+
+/* Main - Notice */
+.card_notice {
+  /* layout */
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--layout-gap-lg);
+}
+.card_notice_item {
+  /* layout */
+  flex: 1 1 300px; 
+  max-width: 800px;
+  padding: var(--layout-gap-sm) 0;
+}
+
+/* ==========================================================================
+   4. myTrip.html CSS (공통 + Mobile)
+   ========================================================================== */
+/* 앨범 제목 및 노래 배치 */
+.trip-title {
+  /* layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tirip-title audio {
+  max-width: 2rem;
+}
+
+/* 카드 CSS */
+.trip-gallery {
+  /* layout */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.trip-card {
+  /* layout */
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  
+  /* skin */
+  background: #ffffff;
+  border: 1px solid #f2f4f6; 
+  border-radius: 20px; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s cubic-bezier(0.21, 1.02, 0.43, 1.01), 
+              box-shadow 0.3s cubic-bezier(0.21, 1.02, 0.43, 1.01);
+  cursor: pointer;
+}
+
+.trip-card:hover {
+  /* skin */
+  box-shadow: 0 20px 32px rgba(0, 0, 0, 0.08);
+  
+  /* interaction */
+  transform: translateY(-6px);
+}
+
+.trip-card img, .trip-video {
+  /* layout */
+  width: 100%;
+  height: 220px;
+  margin-bottom: 1.25rem;
+  
+  /* skin */
+  object-fit: cover;
+  border-radius: 14px;
+  background-color: #f9fafb;
+}
+
+.trip-card h3 {
+  /* layout */
+  margin: 0 0 0.6rem 0;
+  
+  /* skin */
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #191f28; 
+  line-height: 1.4;
+}
+
+.trip-card p {
+  /*  */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4e5968;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* ==========================================================================
+   4. Desktop(786 이상) - index.html
+   ========================================================================== */
+@media (min-width: 768px) {
+  nav {
+    /* layout */
+    position: static;
+    display: block;
+    padding: 0;
+    
+    /* skin */
+    background-color: transparent;
+  }
+  .main_sub_text {
+    /* layout */
+    display: none;
+  }
+  .main_nav {
+    /* layout */
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding-right: 1rem;
+    
+    /* skin */
+    list-style:none;
+  }
+  .main_nav > li {
+    /* layout */
+    display: inline; /* inline - 한줄 배치임*/
+    
+    /* skin */
+    font-size: 0.8rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    
+    /* interaction */
+    transition: all 150ms cubic-bezier(1, 0.2, 0, 0.4);
+  }
+  .container {
+     /* layout */
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding-inline: 1rem;
+  }
+  section {
+    /* layout */
+    margin: 2rem 0rem;
+  }
+
+  /* Main - Card */
+  .card_info {
+    /* layout */
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card_info_box {
+    /* layout */
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    margin-bottom: 3rem;
+  }
+  .card_info_box figure {
+    /* layout */
+    flex: 1;
+    order: 0;               /* 모바일 순서 초기화 */
+    align-items: flex-start; /* 좌측 정렬 */
+    
+    /* skin */
+    text-align: left;
+  }
+  .card_info_box figure img {
+    /* layout */
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    
+    /* skin */
+    border-radius: 50%;
+  }
+  .card_info_image{
+    /* layout */
+    display: block;
+    flex: 1;
+    order: 1;              
+  }
+  .card_info_image img {
+    /* layout */
+    width: 100%;
+    object-fit: cover;
+    
+    /* skin */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* myTrip.html - 1열 정렬  */
+  .trip-gallery {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+

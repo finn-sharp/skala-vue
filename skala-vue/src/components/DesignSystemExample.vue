@@ -1,27 +1,29 @@
 <script setup>
-import HStack from './designsystem/foundation/HStack.vue'
-import VStack from './designsystem/foundation/VStack.vue';
-import Grid from './designsystem/foundation/Grid.vue';
-import Flex from './designsystem/foundation/Flex.vue';
-import Float from './designsystem/foundation/Float.vue'
-import Box from './designsystem/foundation/Box.vue'
+import HStack from './designsystem/layout/HStack.vue'
+import VStack from './designsystem/layout/VStack.vue';
+import GridRoot from './designsystem/layout/GridRoot.vue';
+import GridItem from './designsystem/layout/GridItem.vue';
+import Flex from './designsystem/layout/Flex.vue';
+import Float from './designsystem/layout/Float.vue'
+import Box from './designsystem/layout/Box.vue'
 import WeatherMockup from '../components/WeatherMockup.vue'
+import WeatherComposition from '../components/WeatherComposition.vue'
 </script>
 
 <template>
     <Box :border-width="1" border-color="stroke-neutral-muted" class="p-4">
         <VStack bg="layerDefault" gap="x2" width="full" border-radius="r2">
-            <HStack bg="layerDefault" gap="x2" width="full" border-radius="r2">
-                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">1</Box>
-                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">2</Box>
-                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">3</Box>
+            <HStack bg="neutralWeak" gap="x2" width="full" border-radius="r2">
+                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2"><WeatherMockup/></Box>
+                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2"><WeatherComposition/></Box>
+                <Box bg="brandSolid" px="x2" py="x2" border-radius="r2"><WeatherMockup/></Box>
             </HStack>
-            <VStack bg="layerDefault" gap="x2" width="full" border-radius="r2">
+            <VStack bg="neutralWeak" gap="x2" width="full" border-radius="r2">
                 <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">1</Box>
                 <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">2</Box>
                 <Box bg="brandSolid" px="x2" py="x2" border-radius="r2">3</Box>      
             </VStack>
-            <Box position="relative" width="480px" height="480px" :border-width="1" border-color="stroke-neutral-muted" class="p-4">
+            <Box  width="480px" height="480px" :border-width="1" border-color="stroke-neutral-muted" class="p-4">
                 <Float placement="top-start"><button class="bg-blue-500 text-white p-1 rounded">Top Start</button></Float>
                 <Float placement="top-center"><button class="bg-blue-500 text-white p-1 rounded">Top Center</button></Float>
                 <Float placement="top-end"><button class="bg-blue-500 text-white p-1 rounded">Top End</button></Float>
@@ -32,29 +34,37 @@ import WeatherMockup from '../components/WeatherMockup.vue'
                 <Float placement="bottom-center"><button class="bg-blue-500 text-white p-1 rounded">Bottom Center</button></Float>
                 <Float placement="bottom-end"><button class="bg-blue-500 text-white p-1 rounded">Bottom End</button></Float>
             </Box>
-            <Box position="relative" width="500px" height="200px" :border-width="1" border-color="stroke-neutral-muted">
+            <Box  width="500px" height="200px" :border-width="1" border-color="stroke-neutral-muted">
                 <Float placement="top-start" offset-y="x2" offset-x="x2"><button>Top Center</button></Float>
                 <Float placement="middle-center" offset-y="x2" offset-x="x2"><button>Middle Center</button></Float>
                 <Float placement="bottom-end" offset-y="x2" offset-x="x2"><button>Bottom Center</button></Float>
             </Box>
-            <Flex flex-direction="row" bg="layerDefault" gap="x2" width="full" border-radius="r2">
-                <!-- 첫 번째 그룹: 세로 정렬 (width="full" 제거, flex-grow로 영역 분할) -->
-                <Flex flex-direction="column" bg="brandSolid" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
+            <Flex bg="blue" flex-direction="row" gap="x2" width="full" :padding-y="10">
+                <Flex bg="white" flex-direction="column" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
                     <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">1</Flex>
                     <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">2</Flex>
                 </Flex>
-
-                <!-- 두 번째 그룹: 가로 정렬 -->
-                <Flex flex-direction="row" bg="brandSolid" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
+                <Flex bg="white" flex-direction="row" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
                     <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">3</Flex>
                     <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">4</Flex>
                 </Flex>
-
-                <!-- 5번 아이템 -->
-                <Flex bg="brandSolid" px="x4" py="x3" border-radius="r2">
-                    <WeatherMockup/>
+                <Flex bg="white" px="x4" py="x3" border-radius="r2">
+                    <Flex flex-direction="column" bg="white" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
+                        <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">1</Flex>
+                        <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">2</Flex>
+                    </Flex>
+                    <Flex flex-direction="row" bg="white" gap="x1-5" px="x2" py="x2" :flex-grow="1" border-radius="r2">
+                        <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">3</Flex>
+                        <Flex bg="neutralWeak" px="x4" py="x3" border-radius="r1">4</Flex>
+                    </Flex>
                 </Flex>
             </Flex>
+            <GridRoot bg="red" columns="5" gap="x4" p="x4">
+                <GridItem bg="neutralWeak" p="x2" :col-span="3" :row-span="4">1번 아이템</GridItem>
+                <GridItem bg="neutralWeak" p="x2" :row-span="4">2번 아이템</GridItem>
+                <GridItem bg="neutralWeak" p="x2">3번 아이템</GridItem>
+                <GridItem bg="neutralWeak" p="x2" :col-span="5">4번 아이템 (2칸 차지)</GridItem>
+            </GridRoot>
         </VStack>
     </Box>
 </template>

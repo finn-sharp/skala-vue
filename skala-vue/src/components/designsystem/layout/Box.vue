@@ -4,26 +4,12 @@ import { computed } from 'vue'
 const props = defineProps({
   as: { type: [String, Object], default: 'div' },
   
-  // VStack 전용 축약/매핑 속성 (기본 direction이 column)
-  direction: { type: String, default: 'column' },
-  flexDirection: { type: String, default: '' },
-  align: { type: String, default: 'stretch' }, // VStack은 보통 아래로 꽉 채우는 stretch가 기본값입니다.
-  alignItems: { type: String, default: '' },
-  justify: { type: String, default: 'flex-start' },
-  justifyContent: { type: String, default: '' },
-  wrap: { type: [String, Boolean], default: '' },
-  flexWrap: { type: [String, Boolean], default: '' },
-  grow: { type: [Boolean, Number], default: '' },
-  flexGrow: { type: [Boolean, Number], default: '' },
-  shrink: { type: [Boolean, Number], default: '' },
-  flexShrink: { type: [Boolean, Number], default: '' },
-
-  // Background & Color
+  // Background
   bg: { type: String, default: '' },
   background: { type: String, default: '' },
-  color: { type: String, default: '' },
   
-  // Border
+  // Color & Border
+  color: { type: String, default: '' },
   borderColor: { type: String, default: '' },
   borderWidth: { type: [String, Number], default: '' },
   borderTopWidth: { type: [String, Number], default: '' },
@@ -46,18 +32,22 @@ const props = defineProps({
   maxHeight: { type: [String, Number], default: '' },
   
   // Position
-  position: { type: String, default: '' },
+  position: { type: String, default: 'relative' },
   top: { type: [String, Number], default: '' },
   right: { type: [String, Number], default: '' },
   bottom: { type: [String, Number], default: '' },
   left: { type: [String, Number], default: '' },
   zIndex: { type: [String, Number], default: '' },
   
-  // Display & Gap
-  display: { type: String, default: 'flex' },
+  // Display & Flex
+  display: { type: String, default: '' },
+  flexDirection: { type: String, default: '' },
+  flexWrap: { type: [String, Boolean], default: '' },
+  justifyContent: { type: String, default: '' },
+  alignItems: { type: String, default: '' },
   gap: { type: [String, Number], default: '' },
   
-  // Padding & Bleed 등 공통 마진/패딩 속성 생략 없이 동일하게 적용
+  // Padding
   padding: { type: [String, Number], default: '' },
   p: { type: [String, Number], default: '' },
   paddingX: { type: [String, Number], default: '' },
@@ -73,6 +63,7 @@ const props = defineProps({
   paddingLeft: { type: [String, Number], default: '' },
   pl: { type: [String, Number], default: '' },
 
+  // Margin
   margin: { type: [String, Number], default: '' },
   m: { type: [String, Number], default: '' },
   marginX: { type: [String, Number], default: '' },
@@ -91,6 +82,8 @@ const props = defineProps({
 
 /**
  * 범용 토큰 변환 헬퍼 함수
+ * @param {string} prefix - 토큰 접두사 (color, spacing, radius 등)
+ * @param {any} value - 입력 값 (예: 'brandSolid', 'x2', 16, 'full', '0' 등)
  */
 const resolveToken = (prefix, value) => {
   if (value === undefined || value === '') return undefined
@@ -104,16 +97,9 @@ const resolveToken = (prefix, value) => {
   const formatted = value.replace(/\./g, '-').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
   return `var(--${prefix}-${formatted}, var(--${formatted}, ${value}))`
 }
-
 const computedStyle = computed(() => {
   const bgVal = props.bg || props.background
-  const dirVal = props.flexDirection || props.direction
-  const alignVal = props.alignItems || props.align
-  const justifyVal = props.justifyContent || props.justify
-  const wrapVal = props.flexWrap !== '' ? props.flexWrap : props.wrap
-  const growVal = props.flexGrow !== '' ? props.flexGrow : props.grow
-  const shrinkVal = props.flexShrink !== '' ? props.flexShrink : props.shrink
-
+  
   const pVal = props.padding || props.p
   const pxVal = props.paddingX || props.px
   const pyVal = props.paddingY || props.py
@@ -131,18 +117,11 @@ const computedStyle = computed(() => {
   const mlVal = props.marginLeft || props.ml
 
   return {
-    display: props.display,
-    flexDirection: dirVal,
-    alignItems: alignVal,
-    justifyContent: justifyVal,
-    flexWrap: typeof wrapVal === 'boolean' ? (wrapVal ? 'wrap' : 'nowrap') : wrapVal || undefined,
-    flexGrow: growVal === true ? 1 : growVal !== '' ? growVal : undefined,
-    flexShrink: shrinkVal === true ? 1 : shrinkVal !== '' ? shrinkVal : undefined,
-    gap: resolveToken('spacing', props.gap),
-
+    // Background & Color
     backgroundColor: resolveToken('color', bgVal),
     color: resolveToken('color', props.color),
     
+    // Border
     borderColor: resolveToken('color', props.borderColor),
     borderWidth: props.borderWidth !== '' ? `${props.borderWidth}px` : undefined,
     borderTopWidth: props.borderTopWidth !== '' ? `${props.borderTopWidth}px` : undefined,
@@ -157,6 +136,7 @@ const computedStyle = computed(() => {
     borderBottomRightRadius: resolveToken('radius', props.borderBottomRightRadius),
     borderBottomLeftRadius: resolveToken('radius', props.borderBottomLeftRadius),
 
+    // Size & Layout
     width: resolveToken('spacing', props.width),
     minWidth: resolveToken('spacing', props.minWidth),
     maxWidth: resolveToken('spacing', props.maxWidth),
@@ -164,6 +144,7 @@ const computedStyle = computed(() => {
     minHeight: resolveToken('spacing', props.minHeight),
     maxHeight: resolveToken('spacing', props.maxHeight),
 
+    // Position
     position: props.position || undefined,
     top: resolveToken('spacing', props.top),
     right: resolveToken('spacing', props.right),
@@ -171,12 +152,22 @@ const computedStyle = computed(() => {
     left: resolveToken('spacing', props.left),
     zIndex: props.zIndex || undefined,
 
+    // Display & Flex
+    display: props.display || undefined,
+    flexDirection: props.flexDirection || undefined,
+    flexWrap: typeof props.flexWrap === 'boolean' ? (props.flexWrap ? 'wrap' : 'nowrap') : props.flexWrap || undefined,
+    justifyContent: props.justifyContent || undefined,
+    alignItems: props.alignItems || undefined,
+    gap: resolveToken('spacing', props.gap),
+
+    // Padding mappings
     padding: resolveToken('spacing', pVal),
     paddingLeft: resolveToken('spacing', plVal || pxVal),
     paddingRight: resolveToken('spacing', prVal || pxVal),
     paddingTop: resolveToken('spacing', ptVal || pyVal),
     paddingBottom: resolveToken('spacing', pbVal || pyVal),
 
+    // Margin mappings
     margin: resolveToken('spacing', mVal),
     marginLeft: resolveToken('spacing', mlVal || mxVal),
     marginRight: resolveToken('spacing', mrVal || mxVal),

@@ -14,10 +14,16 @@ const router = createRouter({
       component: () => import('../views/WeatherAboutView.vue'),
     },
     {
+      path: '/detail',
+      name: 'SubjectDetail',
+      component: () => import('../views/SubjectDetailView.vue'),
+    },
+    {
       path: '/weather/cityId',
       name: 'WeatherDetailView',
       component: () => import('../views/WeatherDetailView.vue'),
     },
+    
     // catch-all route
     {
       path: '/:pathMatch(.*)*',

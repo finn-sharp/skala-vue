@@ -42,7 +42,7 @@ watchEffect(() => {
 </script>
 
 <template>
-    <div class="app-container">
+    <div>
         <BaseDashboardCard>
             <SearchBar :current-query="searchQuery" @update-query="(val) => (searchQuery = val)" />
         </BaseDashboardCard>
@@ -50,7 +50,7 @@ watchEffect(() => {
             <WeatherCard v-for="item in filteredWeatherList" :key="item.id" :city-item="item" @select-card="(msg) => (selectedCityInfo = msg)" @click-detail="handleMoveWeatherDetail(item)" />
             <p v-if="filteredWeatherList.length === 0" style="text-align: center; color: #e74c3c; padding: 10px 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
         </BaseDashboardCard>        
-        <div class="status-bar">
+        <div>
             {{ selectedCityInfo }}
         </div>
     </div>
@@ -58,8 +58,4 @@ watchEffect(() => {
 
 
 <style scoped>
-.dashboard-wrapper {
-  width: 600px;
-  margin: 0 auto;
-}
 </style>

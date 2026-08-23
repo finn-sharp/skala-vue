@@ -19,10 +19,10 @@ const props = defineProps({
   alignSelf: { type: String, default: '' },
   justifySelf: { type: String, default: '' },
   
-  flexGrow: { type: [Boolean, Number], default: '' },
-  grow: { type: [Boolean, Number], default: '' },
-  flexShrink: { type: [Boolean, Number], default: '' },
-  shrink: { type: [Boolean, Number], default: '' },
+  flexGrow: { type: [Boolean, Number]},
+  grow: { type: [Boolean, Number]},
+  flexShrink: { type: [Boolean, Number]},
+  shrink: { type: [Boolean, Number]},
   
   gap: { type: [String, Number], default: '' },
   width: { type: [String, Number], default: '' },
