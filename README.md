@@ -1,4 +1,4 @@
-# SKALA Vue Weather Lab
+# SKALA Vue Weather Front(Vue) 개발 프로젝트
 
 OpenWeather API를 활용해 도시별 현재 날씨를 조회하는 Vue 3 학습 프로젝트입니다. Vue의 기본 기능을 단계별로 적용하고, 직접 만든 디자인 시스템을 프로젝트 전체에 적용했습니다. 각 기능은 별도 View에서 확인할 수 있도록 구성했습니다.
 
