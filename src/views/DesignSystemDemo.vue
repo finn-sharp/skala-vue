@@ -24,7 +24,7 @@ const tabs = ref({
       <!-- 헤더 -->
       <VStack class="doc-header" gap="x2">
         <h1 class="doc-title">Layout Components</h1>
-        <p class="doc-desc">우리 팀의 일관된 UI 배치를 위한 핵심 레이아웃 아키텍처 가이드입니다.</p>
+        <p class="doc-desc">위 프로젝트에서 일관된 UI 배치를 위해 기업에서 활용하는 디자인시스템-layout을 참고하여 직접 개발했습니다.</p>
       </VStack>
 
       <!-- 1. Stack 시스템 -->
