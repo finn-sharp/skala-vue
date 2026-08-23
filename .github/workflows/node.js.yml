@@ -17,11 +17,14 @@ jobs:
         with:
           node-version: 26.7.0
           cache: npm
+          cache-dependency-path: skala-vue/package-lock.json
 
       - name: Install dependencies
+        working-directory: skala-vue
         run: npm ci
 
       - name: Build
+        working-directory: skala-vue
         env:
           VITE_OPENWEATHER_API_KEY: ${{ secrets.VITE_OPENWEATHER_API_KEY }}
           VITE_OPENWEATHER_BASE_URL: ${{ secrets.VITE_OPENWEATHER_BASE_URL }}
