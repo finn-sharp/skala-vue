@@ -1,29 +1,37 @@
 <script setup>
-import {ref, computed, watch, watchEffect} from 'vue'
-import { useRouter } from 'vue-router';
+import { ref, computed, watch, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-import BaseDashboardCard from '../components/weather/BaseDashboardCard.vue'
-import SearchBar from '../components/weather/SearchBar.vue';
-import WeatherCard from '../components/weather/WeatherCard.vue';
+import BaseDashboardCard from '../components/subject/weatherComponent/BaseDashboardCard.vue'
+import SearchBar from '../components/subject/weatherComponent/SearchBar.vue'
+import WeatherCard from '../components/subject/weatherStore/WeatherCard.vue'
 
 const router = useRouter()
+const route = useRoute()
 
-const handleMoveWeatherDetail = (weatherDetail) => {
-    router.push({
-        name:'WeatherDetailView',
-        params: {cityId:weatherDetail.id},
-        query:{weatherDetail:JSON.stringify(weatherDetail)}
-    })
-}
+const weatherList = ref([
+  { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
+  { id: 'city_02', name: '수원', temp: 24, status: '비' },
+  { id: 'city_03', name: '부산', temp: 26, status: '구름' },
+])
 
 const searchQuery = ref('')
 const selectedCityInfo = ref('카드를 클릭하거나 검색해 보세요.')
 
-const weatherList = ref([
-  { id: 'city_01', name: '서울', temp: 28, status: '맑음',}, // lon: , lat:  },
-  { id: 'city_02', name: '수원', temp: 24, status: '비',}, // lon: , lat:   },
-  { id: 'city_03', name: '부산', temp: 26, status: '구름',}, // lon: , lat:   },
-])
+// 초기 마운트 시 주소창의 쿼리(?search=) 스트링 읽어서 상태 복원 (KeepAlive를 적용해야만 동작함)
+onMounted(() => {
+  if (route.query.search) {
+    searchQuery.value = route.query.search
+  }
+})
+
+// 타이핑될 때마다 주소창의 쿼리 스트링 값을 실시간 푸시 개편 (현재 큰 의미없음)
+watch(searchQuery, (newQuery) => {
+  router.push({
+    path: route.path,
+    query: { search: newQuery || undefined },
+  })
+})
 
 const filteredWeatherList = computed(() => {
   const query = searchQuery.value.trim()
@@ -31,31 +39,32 @@ const filteredWeatherList = computed(() => {
   return weatherList.value.filter((item) => item.name.includes(query))
 })
 
-watch(selectedCityInfo, (newInfo) => {
-  console.log(`👁️‍🗨️ [watch 감지] 상태 바 문구가 업데이트되었습니다 -> "${newInfo}"`)
-})
-
-watchEffect(() => {
-  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchQuery.value}'에 매칭되는 API 데이터를 필터링합니다.`)
-})
-
+const handleDetailJump = (id) => {
+  router.push(`/weather/${id}`)
+}
 </script>
 
 <template>
-    <div>
-        <BaseDashboardCard>
-            <SearchBar :current-query="searchQuery" @update-query="(val) => (searchQuery = val)" />
-        </BaseDashboardCard>
-        <BaseDashboardCard>
-            <WeatherCard v-for="item in filteredWeatherList" :key="item.id" :city-item="item" @select-card="(msg) => (selectedCityInfo = msg)" @click-detail="handleMoveWeatherDetail(item)" />
-            <p v-if="filteredWeatherList.length === 0" style="text-align: center; color: #e74c3c; padding: 10px 0">😭 검색 결과와 일치하는 도시가 없습니다.</p>
-        </BaseDashboardCard>        
-        <div>
-            {{ selectedCityInfo }}
-        </div>
-    </div>
+  <div class="dashboard-wrapper">
+    <BaseDashboardCard>
+      <SearchBar :current-query="searchQuery" @update-query="(val) => (searchQuery = val)" />
+    </BaseDashboardCard>
+
+    <BaseDashboardCard>
+      <h3>🏙️ 지역별 날씨 현황</h3>
+      <WeatherCard v-for="item in filteredWeatherList" :key="item.id" :city-item="item" @select-card="(msg) => (selectedCityInfo = msg)" @click-detail="handleDetailJump(item.id)" />
+    </BaseDashboardCard>
+    <div class="status-bar">{{ selectedCityInfo }}</div>
+  </div>
 </template>
 
-
 <style scoped>
+.status-bar {
+  background: #e8f5e9;
+  padding: 10px;
+  text-align: center;
+  color: #2e7d32;
+  font-weight: bold;
+  border-radius: 6px;
+}
 </style>

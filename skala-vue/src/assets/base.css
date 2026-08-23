@@ -21,10 +21,9 @@
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 
-}
-
-/* semantic color variables for this project */
-:root {
+  /* ==========================================
+     Semantic Color Variables
+     ================================---------- */
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -36,23 +35,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
-}
-
-:root {
   /* ==========================================
      Spacing Tokens (--spacing-*)
      ================================---------- */
@@ -75,17 +58,49 @@
   --radius-full: 9999px;
 
   /* ==========================================
-     Color Tokens (--color-*)
-     * 컴포넌트의 resolveToken('color', ...) 호환용
+     Color Tokens & Layer / Brand
      ================================---------- */
   --color-layer-default: #ffffff;
   --color-brand-solid: #10b981;
   --color-neutral-weak: #f1f3f5;
 
-  /* 기존 bg-* 스타일명으로 직접 호출하는 경우를 위한 백업 변수 */
   --bg-layer-default: #ffffff;
   --bg-brand-solid: #10b981;
   --bg-neutral-weak: #f1f3f5;
+
+  /* ==========================================
+     Pastel Blue Component Tokens (Preview용)
+     ================================---------- */
+  --color-pastel-container: #f0f4f8;
+  --color-pastel-border: #d9e2ec;
+  --color-pastel-item-bg: #ffffff;
+  --color-pastel-item-border: #bcccdc;
+
+  --bg-pastel-container: #f0f4f8;
+  --bg-pastel-item-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--vt-c-black);
+    --color-background-soft: var(--vt-c-black-soft);
+    --color-background-mute: var(--vt-c-black-mute);
+
+    --color-border: var(--vt-c-divider-dark-2);
+    --color-border-hover: var(--vt-c-divider-dark-1);
+
+    --color-heading: var(--vt-c-text-dark-1);
+    --color-text: var(--vt-c-text-dark-2);
+
+    /* 다크모드 대응 파스텔 토큰 */
+    --color-pastel-container: #1e293b;
+    --color-pastel-border: #334155;
+    --color-pastel-item-bg: #0f172a;
+    --color-pastel-item-border: #475569;
+
+    --bg-pastel-container: #1e293b;
+    --bg-pastel-item-bg: #0f172a;
+  }
 }
 
 *,

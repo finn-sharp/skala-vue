@@ -14,21 +14,48 @@ const router = createRouter({
       component: () => import('../views/WeatherAboutView.vue'),
     },
     {
-      path: '/detail',
-      name: 'SubjectDetail',
-      component: () => import('../views/SubjectDetailView.vue'),
-    },
-    {
-      path: '/weather/cityId',
+      path: '/weather/:cityId',
       name: 'WeatherDetailView',
       component: () => import('../views/WeatherDetailView.vue'),
     },
-    
-    // catch-all route
+    {
+      path: '/designsystem',
+      name: 'DesignSystemDemo',
+      component: () => import('../views/DesignSystemDemo.vue'),
+    },    
+    {
+      path: '/detail',
+      name: 'SubjectDetail',
+      component: () => import('../views/SubjectDetailView.vue'),
+      children: [
+        { 
+          path: '',
+          name: 'RoutedAppView',
+          component: () => import('../components/subject/weatherRouter/App.vue'),
+          children: [
+            {
+              path: '', 
+              name: 'home',
+              component: () => import('../components/subject/weatherRouter/WeatherHomeView.vue'),
+            },
+            {
+              path: 'about', 
+              name: 'about',
+              component: () => import('../components/subject/weatherRouter/WeatherAboutView.vue'),
+            },
+            {
+              path: 'detail/:cityId',
+              name: 'detail',
+              component: () => import('../components/subject/weatherRouter/WeatherDetailView.vue'),
+            },
+          ]
+        }
+      ]
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
-      component: import('../views/NotFoundView.vue')
+      component: () => import('../views/NotFoundView.vue'),
     }
   ],
 })
