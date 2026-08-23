@@ -204,32 +204,40 @@ jobs:
 ## 프로젝트 구조
 
 ```text
-skala-vue/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-├── src/
-│   ├── api/
-│   │   └── weather.js
-│   ├── components/
-│   │   ├── designsystem/
-│   │   │   └── layout/
-│   │   └── subject/
-│   │       ├── weatherComponent/
-│   │       ├── WeatherMockup.vue
-│   │       └── WeatherComposition.vue
-│   ├── router/
-│   │   └── index.js
-│   ├── stores/
-│   │   └── configStore.js
-│   ├── views/
-│   │   ├── LayoutView.vue
-│   │   ├── WeatherView.vue
-│   │   └── ...
-│   ├── App.vue
-│   └── main.js
-├── .env.example
+.
 ├── eslint.config.js
-├── vite.config.js
-└── package.json
+├── index.html
+├── jsconfig.json
+├── package-lock.json
+├── package.json
+├── public
+│   └── favicon.ico
+├── README.md
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   ├── base.css
+│   │   ├── logo.svg
+│   │   ├── main.css
+│   │   ├── style.css
+│   │   └── subject.css
+│   ├── components
+│   │   ├── designsystem
+│   │   ├── example
+│   │   ├── icons
+│   │   └── subject
+│   ├── main.js
+│   ├── router
+│   │   └── index.js
+│   ├── stores
+│   │   ├── configStore.js
+│   │   └── counter.js
+│   └── views
+│       ├── DesignSystemDemo.vue
+│       ├── NotFoundView.vue
+│       ├── SubjectDetailView.vue
+│       ├── WeatherAboutView.vue
+│       ├── WeatherDetailView.vue
+│       └── WeatherHomeView.vue
+└── vite.config.js
 ```
