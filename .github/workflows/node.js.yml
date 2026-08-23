@@ -1,8 +1,14 @@
-name: Vue Build
+name: Deploy Vue to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -16,8 +22,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 26.7.0
-          cache: npm
-          cache-dependency-path: skala-vue/package-lock.json
 
       - name: Install dependencies
         working-directory: skala-vue
@@ -29,3 +33,24 @@ jobs:
           VITE_OPENWEATHER_API_KEY: ${{ secrets.VITE_OPENWEATHER_API_KEY }}
           VITE_OPENWEATHER_BASE_URL: ${{ secrets.VITE_OPENWEATHER_BASE_URL }}
         run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: skala-vue/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
