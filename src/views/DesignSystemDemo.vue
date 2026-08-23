@@ -30,7 +30,7 @@ const tabs = ref({
       <!-- 1. Stack 시스템 -->
       <VStack class="doc-section" gap="x2">
         <h2>Stack System</h2>
-        <p class="section-desc">HStack과 VStack을 조합하여 수평 및 수직 방향의 레이아웃을 구성합니다.</p>
+        <p class="section-desc">HStack 과 VStack 을 조합하여 수평 및 수직 방향의 레이아웃을 구성합니다.</p>
         
         <Box class="doc-card" border-radius="r2">
           <HStack class="tab-header" gap="x4">
@@ -52,24 +52,20 @@ const tabs = ref({
               </VStack>
             </div>
             <div v-show="tabs.stack === 'code'" class="code-panel">
-              <pre>
-                <code>
-&lt;VStack bg="pastelContainer" border-radius="r3" gap="x3" p="x4"&gt;
-  &lt;HStack gap="x3"&gt;
-    &lt;Box bg="pastelItemBg" border-radius="r2"&gt;H-Item 1&lt;/Box&gt;
-    &lt;Box bg="pastelItemBg" border-radius="r2"&gt;H-Item 2&lt;/Box&gt;
-  &lt;/HStack&gt;
-  &lt;VStack gap="x2"&gt;
-    &lt;Box bg="pastelItemBg" border-radius="r2"&gt;V-Item 1&lt;/Box&gt;
-    &lt;Box bg="pastelItemBg" border-radius="r2"&gt;V-Item 2&lt;/Box&gt;
-  &lt;/VStack&gt;
-&lt;/VStack&gt;</code>
-              </pre>
+              <pre><code>&lt;VStack bg="pastelContainer" border-radius="r3" gap="x3" p="x4"&gt;
+        &lt;HStack gap="x3"&gt;
+          &lt;Box bg="pastelItemBg" border-radius="r2"&gt;H-Item 1&lt;/Box&gt;
+          &lt;Box bg="pastelItemBg" border-radius="r2"&gt;H-Item 2&lt;/Box&gt;
+        &lt;/HStack&gt;
+        &lt;VStack gap="x2"&gt;
+          &lt;Box bg="pastelItemBg" border-radius="r2"&gt;V-Item 1&lt;/Box&gt;
+          &lt;Box bg="pastelItemBg" border-radius="r2"&gt;V-Item 2&lt;/Box&gt;
+        &lt;/VStack&gt;
+      &lt;/VStack&gt;</code></pre>
             </div>
           </Box>
         </Box>
       </VStack>
-
       <!-- 2. Flex 시스템 -->
       <VStack class="doc-section" gap="x2">
         <h2>Flex Layout</h2>
