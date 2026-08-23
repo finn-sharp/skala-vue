@@ -223,9 +223,46 @@ jobs:
 │   │   └── subject.css
 │   ├── components
 │   │   ├── designsystem
+│   │   │   ├── card
+│   │   │   └── layout
 │   │   ├── example
+│   │   │   ├── ComputedExam.vue
+│   │   │   ├── EventBinding.vue
+│   │   │   ├── EventHandlerModifier.vue
+│   │   │   ├── EventHandlerVon.vue
+│   │   │   ├── HelloWorld.vue
+│   │   │   ├── LifeCycleHook.vue
+│   │   │   ├── practice
+│   │   │   ├── PropsEmitsChild.vue
+│   │   │   ├── PropsEmitsParent.vue
+│   │   │   ├── ReactiveState.vue
+│   │   │   ├── SampleEight.vue
+│   │   │   ├── SampleFive.vue
+│   │   │   ├── SampleFour.vue
+│   │   │   ├── SampleOne.vue
+│   │   │   ├── SampleSeven.vue
+│   │   │   ├── SampleSix.vue
+│   │   │   ├── SampleThree.vue
+│   │   │   ├── SampleTwo.vue
+│   │   │   ├── SlotChild.vue
+│   │   │   ├── SlotParent.vue
+│   │   │   ├── TheWelcome.vue
+│   │   │   ├── WatchExam.vue
+│   │   │   ├── WatchReactiveExam.vue
+│   │   │   ├── weather_hands_on
+│   │   │   └── WelcomeItem.vue
 │   │   ├── icons
+│   │   │   ├── IconCommunity.vue
+│   │   │   ├── IconDocumentation.vue
+│   │   │   ├── IconEcosystem.vue
+│   │   │   ├── IconSupport.vue
+│   │   │   └── IconTooling.vue
 │   │   └── subject
+│   │       ├── weatherComponent
+│   │       ├── WeatherComposition.vue
+│   │       ├── WeatherMockup.vue
+│   │       ├── weatherRouter
+│   │       └── weatherStore
 │   ├── main.js
 │   ├── router
 │   │   └── index.js
