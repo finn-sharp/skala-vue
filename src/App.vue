@@ -1,12 +1,12 @@
 <script setup>
-import { VStack, HStack, GridRoot, GridItem, Flex, Float } from './components/designsystem/layout/index.js'
+import { Flex, Float } from './components/designsystem/layout/index.js'
 import { RouterLink, RouterView } from 'vue-router';
 import UnitToggler from './components/subject/weatherStore/UnitToggler.vue';
 </script>
 
 <template>
   <div class="app-container">
-    <h1>Weather Plan</h1>
+    <h1>Finn's Weather</h1>
     <header>
       <nav>
         <Flex flex-direction="row" gap="x2" :padding-y="30">
