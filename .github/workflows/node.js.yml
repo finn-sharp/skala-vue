@@ -21,11 +21,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
-          node-version: 26.7.0
-          package-manager-cache: false
+          node-version: '20' # 안정적인 20 버전으로 변경
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install # package-lock.json 에러 방지를 위해 install로 변경
 
       - name: Build
         env:
