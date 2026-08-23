@@ -38,20 +38,24 @@ const tabs = ref({
             <button :class="{ active: tabs.stack === 'code' }" @click="tabs.stack = 'code'">Code</button>
           </HStack>
 
-          <Box class="tab-content preview-panel" v-show="tabs.stack === 'preview'" >
-              <VStack bg="pastelContainer" border-color="pastelBorder" :border-width="1" border-radius="r3" gap="x3" width="full" p="x4">
-                <HStack gap="x3" width="full">
-                  <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label flex-1">H-Item 1</Box>
-                  <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label flex-1">H-Item 2</Box>
-                </HStack>
-                <VStack gap="x2" width="full">
-                  <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label">V-Item 1</Box>
-                  <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label">V-Item 2</Box>
-                </VStack>
+          <!-- 1. Preview 패널 (preview일 때만 노출) -->
+          <Box class="tab-content preview-panel" v-show="tabs.stack === 'preview'">
+            <VStack bg="pastelContainer" border-color="pastelBorder" :border-width="1" border-radius="r3" gap="x3" width="full" p="x4">
+              <HStack gap="x3" width="full">
+                <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label flex-1">H-Item 1</Box>
+                <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label flex-1">H-Item 2</Box>
+              </HStack>
+              <VStack gap="x2" width="full">
+                <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label">V-Item 1</Box>
+                <Box bg="pastelItemBg" border-color="pastelItemBorder" :border-width="1" border-radius="r2" px="x4" py="x3" class="box-label">V-Item 2</Box>
               </VStack>
-            <div v-show="tabs.stack === 'code'" class="code-panel">
-              <pre>
-                <code>
+            </VStack>
+          </Box>
+
+          <!-- 2. Code 패널 (바깥으로 분리! code일 때만 노출) -->
+          <div v-show="tabs.stack === 'code'" class="code-panel">
+            <pre>
+              <code>
 &lt;VStack bg="pastelContainer" border-radius="r3" gap="x3" p="x4"&gt;
   &lt;HStack gap="x3"&gt;
     &lt;Box bg="pastelItemBg" border-radius="r2"&gt;H-Item 1&lt;/Box&gt;
@@ -62,9 +66,8 @@ const tabs = ref({
     &lt;Box bg="pastelItemBg" border-radius="r2"&gt;V-Item 2&lt;/Box&gt;
   &lt;/VStack&gt;
 &lt;/VStack&gt;</code>
-              </pre>
-            </div>
-          </Box>
+            </pre>
+          </div>
         </Box>
       </VStack>
 
