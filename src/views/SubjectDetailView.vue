@@ -84,7 +84,7 @@ import { RouterView } from 'vue-router'
         <!-- 3번 과제 -->
         <GridRoot columns="3" gap="x4" p="x4">
             <GridItem bg="neutralWeak" p="x2" :col-span="1" border-radius="r2">
-                <h2>3. Weather Composition</h2>
+                <h2>3. Weather Components</h2>
                 <hr>
                 <h3>3.1. 기본 요구사항</h3>
                 <ul>
